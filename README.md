@@ -29,6 +29,25 @@ The network graph is structured with:
 - **Nodes**: Each representing an artist.
 - **Edges**: Existing between artists who appear together on two or more playlists. Artists featured together on only one playlist are not linked by an edge.
 
+### Data Summary and Variables
+Data fetched from the Spotify API includes various attributes about artists and playlists:
+- **Artist Attributes**:
+  - `name`: Name of the artist.
+  - `genres`: List of genres the artist is associated with.
+  - `popularity`: Popularity score of the artist on Spotify.
+  
+  Total variables per artist: 3
+
+- **Playlist Attributes**:
+  - Each playlist item details the artists involved and their respective tracks.
+
+- **Category Attributes**:
+  - Categories are identified by name and ID, providing a structured way to access playlists.
+
+- **Variables Summary**:
+  - Total distinct artist-related variables: 3 (name, genres, popularity)
+  - Additional data points include playlist names, track details, and collaborative links between artists.
+
 ## Installation and Configuration
 
 ### Prerequisites
