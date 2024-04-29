@@ -1,7 +1,3 @@
-Based on the information provided throughout our conversation and the inclusion of the `si507.sh` script details, here is a revised and comprehensive README document for your Spotify API Application project. This README aims to encompass setup, configuration, usage, and script execution.
-
----
-
 **README for Spotify API Application**
 
 ## Overview
@@ -71,7 +67,3 @@ Navigate to this URL in a web browser to start using the application.
 
 - Ensure to comply with Spotify's API terms of service, particularly regarding rate limits and data usage.
 - Customize the `si507.sh` script as needed to match your Flask application file names or additional configurations.
-
----
-
-This README should be saved as a `.txt` or `.md` file at the root of your project directory. It's designed to guide users through installation, configuration, and usage of the application comprehensively. If you require further customization or additional information, please let me know!
