@@ -1,76 +1,81 @@
 # Artist Network Application - README
 
 ## Overview
-The Artist Network Application visualizes connections between musical artists using data from the Spotify API. It provides an interactive way to explore collaborations and shared playlists, presenting a network graph where nodes are artists and edges represent these connections.
+The Artist Network Application is a Flask-powered tool that creates a visual network of musical artists using the Spotify API, showcasing connections based on shared playlists and collaborations.
 
 ## Features
-- **Authentication**: Secure login with Spotify credentials is required to access the API data.
-- **Interactive Graph**: Visualize connections between artists based on shared playlists and collaborations within chosen music categories.
-- **Artist Profiles**: View detailed information about artists, including genres, popularity, and associated playlists.
-- **Search Functionality**: Users can search for artists to explore their profiles and understand their influence within the network graph.
-- **Popularity Insights**: The application highlights popular artists by analyzing the network's connections.
-- **Influence Metrics**: Centrality measures such as degree and betweenness, which provide insights into an artist’s influence and prominence within the network.
-- **Extended Network Exploration**: Beyond direct collaborations, users can discover broader connection patterns among artists.
+- **Authentication**: Users log in with their Spotify credentials.
+- **Interactive Graph**: Users can view an interactive graph depicting artist connections.
+- **Artist Profiles**: Detailed information about each artist, such as genres and popularity.
+- **Search Functionality**: Ability to search for and view specific artists' influence and profiles.
+- **Popularity Insights**: Insights into the most popular artists based on network connections.
+- **Influence Metrics**: Analysis of artists' influence within the network using centrality measures.
+- **Extended Network Exploration**: Users can explore broader artist connections.
+  
+## Data Source and Interaction
 
-## Interactions and Responses
-- Users are prompted to log in with Spotify credentials upon initiating the application.
-- After logging in, the user selects a music category to visualize the artist network graph.
-- Clicking on an artist node presents detailed information about that artist in a dedicated info panel.
-- Searching for an artist will return their profile, and the graph will adjust to highlight their connections.
-- The application responds to user queries by fetching and rendering the requested data, updating the UI accordingly.
+### Origin and Documentation Formats
+Data is sourced from the Spotify Web API at various endpoints, returned in JSON format. Detailed endpoint URLs include:
+- Artist Details: `https://api.spotify.com/v1/artists/{artist_id}`
+- Playlist Artists: `https://api.spotify.com/v1/playlists/{playlist_id}/tracks`
+- Music Categories: `https://api.spotify.com/v1/browse/categories`
+- Category Playlists: `https://api.spotify.com/v1/browse/categories/{category_id}/playlists`
+
+### Access and Caching
+Authenticated HTTP requests are used to access the data. Due to API rate limits, not all data is cached; only a subset is stored, primarily involving some music playlist graph files for efficient data retrieval and visualization.
+
+### Network Graph Organization
+The network graph is structured with:
+- **Nodes**: Each representing an artist.
+- **Edges**: Existing between artists who appear together on two or more playlists. Artists featured together on only one playlist are not linked by an edge.
 
 ## Installation and Configuration
 
 ### Prerequisites
 - Python 3.6+
-- Pip (Python package manager)
+- Pip
 - Spotify Developer Account for API keys
 
 ### Setup Instructions
 1. **Obtain API Credentials**:
-   - Register an application on the [Spotify Developer Dashboard](https://developer.spotify.com/documentation/web-api).
-   - Note the Client ID and Client Secret.
-   - Set the redirect URI to `http://127.0.0.1:5000/callback`.
+   - Register on the [Spotify Developer Dashboard](https://developer.spotify.com/documentation/web-api).
+   - Note your Client ID and Client Secret.
+   - Set your redirect URI to `http://127.0.0.1:5000/callback`.
 
 2. **Environment Setup**:
-   - Store the Spotify credentials as environment variables or in a `.env` file:
-     ```bash
+   - Export your Spotify credentials or use a `.env` file:
+     ```
      export SPOTIFY_CLIENT_ID='your_client_id'
      export SPOTIFY_CLIENT_SECRET='your_client_secret'
      ```
 
-3. **Activate the Setup Script**:
-   - Make the script executable and initialize the environment:
-     ```bash
+3. **Activate the Script**:
+   - Make the script executable and run it:
+     ```
      chmod +x si507.sh
-     ./si507.sh myenv
+     ./si507.sh <env_name>
      ```
 
 4. **Run the Application**:
-   - Launch the Flask application:
-     ```bash
+   - Launch the Flask app:
+     ```
      flask run
      ```
-   - Access the app at `http://127.0.0.1:5000`.
-
-## Caching and API Limitations
-The application implements selective caching due to API rate limits and the extensive data size. It stores a subset of music playlist graph files, optimizing the balance between data visualization quality and API usage constraints.
 
 ## Dependencies
-This application requires the following Python packages:
-- Flask: To serve the web application.
-- Requests: To make HTTP requests to the Spotify API.
-- Networkx: To create and manipulate the network graph.
-- Bleach: To sanitize user inputs and prevent XSS attacks.
+The application requires several third-party Python packages:
+- `Flask`: To create and manage the web server.
+- `Requests`: For making HTTP requests to the Spotify API.
+- `Networkx`: To manage the graph structure representing artist relationships.
+- `Bleach`: For sanitizing inputs to prevent cross-site scripting attacks.
 
-These dependencies are listed in `requirements.txt` and are installed during the setup process.
+Install these packages using:
+```
+pip install -r requirements.txt
+```
 
-## Data Structure and Access
-- **Network Graph**: 
-Nodes: Each node represents an individual artist.
-Edges: An edge is drawn between two artists if they appear together on two or more playlists, signifying a connection. If artists share only one playlist, they are not connected by an edge in the graph. This approach emphasizes stronger collaborative ties.- **Data Source**: [Spotify API](https://developer.spotify.com/documentation/web-api) (Data in JSON format).
-- **Access Method**: Data is fetched through authenticated HTTP requests. Full caching is not implemented to stay within API request limits.
-- **Data Summary**: The data includes artist names, genres, popularity scores, and the number of shared playlists.
+## Usage
+After installation, access the application at `http://127.0.0.1:5000` in your web browser, log in with your Spotify credentials, and navigate the features through the web interface.
 
 ## Support and Contributions
-For detailed API usage and limitations, consult the [Spotify API documentation](https://developer.spotify.com/documentation/web-api). The source code and [Flask documentation](https://flask.palletsprojects.com/en/2.0.x/) provide additional development and troubleshooting guidance.
+Consult the Spotify API documentation for usage details and limitations. For custom development or troubleshooting, refer to the source code documentation and the Flask framework guidelines.
