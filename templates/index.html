@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Network</title>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+    <h1>Xiwei Yang</h1>
+    <select id="categorySelector" onchange="fetchGraphData(this.value)">
+        <option value="">Select a Category</option>
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+    <div id="graph" style="width: 960px; height: 600px;"></div>
+    <div id="tooltip" style="display: none; position: absolute; padding: 10px; background: white; border: 1px solid #ddd;"></div>
+
+    <h2>Search Artist</h2>
+    <input type="text" id="artistSearch" placeholder="Enter artist name" />
+    <div id="artistInfo"></div>
+    <button onclick="searchArtist()">Search Artist</button>
+ 
+    <h2>Popular Artists</h2>
+    <div id="popular-artists"></div>
+    <button onclick="fetchPopularArtists()">Show Popular Artists</button> 
+
+    <h2>Check Artist Influence</h2>
+    <input type="text" id="artistInfluenceInput" placeholder="Enter artist name">
+    <div id="artistInfluenceResults"></div> 
+    <button onclick="fetchArtistInfluence()">Get Influence</button>
+
+    <h2>Check Extended Connections</h2>
+    <input type="text" id="extendedConnectionsInput" placeholder="Enter artist name">
+    <div id="extendedConnectionsResults"></div>
+    <button onclick="fetchExtendedConnections()">Get Connections</button>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

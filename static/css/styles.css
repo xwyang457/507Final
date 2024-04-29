@@ -1,0 +1,82 @@
+/* styles.css
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.node circle {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.node text {
+    font-size: 12px;
+}
+
+.link {
+    stroke: #999;
+    stroke-opacity: 0.6;
+}
+
+#generateGraphButton{
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#graph {
+    border: 1px solid #ccc;
+}
+
+#info-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 20px;
+    width: 300px;
+    min-height: 50px;
+} */
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+h1, h2 {
+    color: #0066cc;
+}
+
+button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0055a5;
+}
+
+
+select, input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#graph, #artistInfo, #artistInfluenceResults, #extendedConnectionsResults {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: white;
+}
+
+
+div {
+    margin-bottom: 20px;
+}
