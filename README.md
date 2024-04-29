@@ -9,6 +9,7 @@ The Artist Network Application visualizes connections between musical artists us
 - **Artist Profiles**: View detailed information about artists, including genres, popularity, and associated playlists.
 - **Search Functionality**: Users can search for artists to explore their profiles and understand their influence within the network graph.
 - **Popularity Insights**: The application highlights popular artists by analyzing the network's connections.
+- **Influence Metrics**: Centrality measures such as degree and betweenness, which provide insights into an artist’s influence and prominence within the network.
 - **Extended Network Exploration**: Beyond direct collaborations, users can discover broader connection patterns among artists.
 
 ## Interactions and Responses
@@ -65,8 +66,9 @@ This application requires the following Python packages:
 These dependencies are listed in `requirements.txt` and are installed during the setup process.
 
 ## Data Structure and Access
-- **Network Graph**: Nodes are artists; edges represent shared playlists.
-- **Data Source**: [Spotify API](https://developer.spotify.com/documentation/web-api) (Data in JSON format).
+- **Network Graph**: 
+Nodes: Each node represents an individual artist.
+Edges: An edge is drawn between two artists if they appear together on two or more playlists, signifying a connection. If artists share only one playlist, they are not connected by an edge in the graph. This approach emphasizes stronger collaborative ties.- **Data Source**: [Spotify API](https://developer.spotify.com/documentation/web-api) (Data in JSON format).
 - **Access Method**: Data is fetched through authenticated HTTP requests. Full caching is not implemented to stay within API request limits.
 - **Data Summary**: The data includes artist names, genres, popularity scores, and the number of shared playlists.
 
