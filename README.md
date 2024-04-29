@@ -1,64 +1,78 @@
-**README for Spotify API Application**
+# Artist Network Application - README
 
 ## Overview
-
-The Spotify API Application is an innovative tool for visualizing and understanding the intricate web of relationships between artists on Spotify. It brings music data to life through an interactive network graph, providing insights into artist collaborations and industry dynamics.
+The Artist Network Application is a Flask-powered tool that creates a visual network of musical artists. It harnesses data from the Spotify API, illustrating connections between artists based on shared playlists and collaborations.
 
 ## Features
+- **Authentication**: Secure login with Spotify credentials.
+- **Interactive Graph**: Visual representation of artist connections within selected music categories.
+- **Artist Profiles**: Access to detailed artist information, including genres, popularity, and associated playlists.
+- **Search Functionality**: Locate specific artists and view their influence within the network.
+- **Popularity Insights**: Discover popular artists based on network connections.
+- **Extended Network Exploration**: Investigate broader artist connections beyond direct collaborations.
 
-- **User Authentication:** Secure Spotify OAuth integration.
-- **Dynamic Graph Visualization:** Using D3.js to represent artist networks.
-- **Artist Search Functionality:** Search and analyze artist details.
-- **Popularity Metrics:** View popular artists and their influence within the network.
+## Installation and Configuration
 
-## Obtaining Spotify API Credentials
+### Prerequisites
+- Python 3.6+
+- Pip (Python package manager)
+- Spotify Developer Account (for API keys)
 
-1. **Spotify Developer Account:**
-   - Visit the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/).
-   - Log in or sign up for a Spotify account.
+### Setup Instructions
 
-2. **Register Your Application:**
-   - Click "CREATE AN APP" and provide the required details.
-   - Accept the terms and create your application.
+1. **Obtain API Credentials**:
+   - Register an application on the [Spotify Developer Dashboard](https://developer.spotify.com/documentation/web-api).
+   - Note down the Client ID and Client Secret.
+   - Set `http://127.0.0.1:5000/callback` as the redirect URI.
 
-3. **Client ID and Client Secret:**
-   - Note your application's Client ID and Client Secret from the dashboard.
-
-4. **Redirect URI:**
-   - Add `http://127.0.0.1:5000/callback` as a Redirect URI in your application settings.
-
-## Data Handling
-
-- **DataStructure.py:** This module employs NetworkX to create and manage the graph structure, encapsulating the complexity of artist relationships in a comprehensive, mathematical model.
-- **Spotify_api.py:** Facilitates data fetching from the Spotify API, transforming JSON responses into Python data structures for further analysis and processing.
-- **Views.py:** Integrates Flask routing to handle HTTP requests and responses, interfacing between the frontend actions and backend data processing.
-
-### Installation and Configuration
-
-1. **Clone and Set Up:**
-   - Use Git to clone the repository and set up the environment with the provided shell script:
+2. **Environment Setup**:
+   - Export the Spotify credentials as environment variables:
      ```bash
-     git clone <repository-url>
+     export SPOTIFY_CLIENT_ID='your_client_id'
+     export SPOTIFY_CLIENT_SECRET='your_client_secret'
+     ```
+   - Alternatively, use a `.env` file to store these variables.
+
+3. **Activate the Script**:
+   - Make the setup script executable and run it:
+     ```bash
      chmod +x si507.sh
-     ./si507.sh <env_name>
+     ./si507.sh myenv
      ```
+   - Replace `myenv` with your desired environment name. This will create and activate a virtual environment, and install the necessary dependencies.
 
-2. **Update Credentials:**
-   - In `views.py`, update with your Spotify API details:
-     ```python
-     init_spotify_auth(client_id='your_spotify_client_id',
-                       client_secret='your_spotify_client_secret',
-                       redirect_uri='http://127.0.0.1:5000/callback')
+4. **Run the Application**:
+   - Start the Flask application using:
+     ```bash
+     flask run
      ```
+   - Access the app in a web browser at `http://127.0.0.1:5000`.
 
-## Running the Application
+## Usage
 
-Navigate to `http://localhost:5000/` after running the setup script to start using the application. Enjoy exploring the music network, visualizing artist relationships, and uncovering the fabric of musical collaboration.
+Navigate the application through the web interface. Authenticate with Spotify, select a category to view the artist graph, and use search features to explore artist details.
 
-## Additional Notes
+## Caching and API Limitations
 
-- Maintain confidentiality of your API credentials.
-- Respect Spotify's API usage policies, including rate limits.
-- Adapt the setup script `si507.sh` as necessary to fit your specific environment settings and Flask application name.
+Due to Spotify API's rate limits and the extensive size of data, the application does not cache all data. Currently, it stores a subset of music playlist graph files. This selective caching strategy aims to balance between providing valuable data visualizations and staying within the API usage constraints.
 
+## Dependencies
 
+The application requires the following Python packages:
+- Flask
+- Requests
+- Networkx
+- Bleach
+
+All dependencies are listed in `requirements.txt` and are installed during the setup process.
+
+## Data Structure and Access
+
+- **Network Graph**: Nodes represent artists; edges reflect shared playlists.
+- **Data Source**: Spotify API (JSON format).
+- **Access**: Data is retrieved using authenticated HTTP requests. Due to API limits, not all data is cached.
+- **Data Summary**: The application processes numerous variables, including artist names, genres, and popularity, with a focus on visual clarity and network representation.
+
+## Support and Contributions
+
+Refer to the Spotify API documentation for detailed usage and limitations. The source code and Flask documentation offer additional guidance for custom development or troubleshooting.
